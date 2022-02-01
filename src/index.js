@@ -1,19 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { Provider } from 'react-redux';
-import createStoreInstance  from './redux/store';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import App from './App'
+import reportWebVitals from './reportWebVitals'
+import { Provider } from 'react-redux'
+import createStoreInstance from './redux/store'
 
-const localStorageTodos = localStorage.getItem('todos');
-let initialTodos = !localStorageTodos ? [] : JSON.parse(localStorageTodos);
+const localStorageTodos = localStorage.getItem('todos')
+const initialTodos = localStorageTodos === 'undefined' ? [] : JSON.parse(localStorageTodos)
 
-let initialState = {
+const initialState = {
   todos: initialTodos
-};
+}
 
-let store = createStoreInstance(initialState);
+const store = createStoreInstance(initialState)
 
 ReactDOM.render(
   <React.StrictMode>
@@ -22,9 +22,9 @@ ReactDOM.render(
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
-);
+)
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+reportWebVitals()

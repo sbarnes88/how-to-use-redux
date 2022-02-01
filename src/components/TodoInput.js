@@ -1,44 +1,43 @@
-import React from "react";
+import React from 'react'
+import { PropTypes } from 'prop-types'
 
 export class TodoInput extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = { text: '', dueDate: this.getFormattedDate(new Date()) }
+    this.handleAdd = this.handleAdd.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleDateChange = this.handleDateChange.bind(this)
+  }
 
-    constructor(props) {
-        super(props);
-        this.state = { text: '', dueDate: this.getFormattedDate(new Date()) };
-        this.handleAdd = this.handleAdd.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleDateChange = this.handleDateChange.bind(this);
+  getFormattedDate (date) {
+    let month = (date.getMonth() + 1).toString()
+    let day = (date.getDate()).toString()
+    if (month.length === 1) {
+      month = '0' + month
     }
-
-    getFormattedDate(date) {
-        let month = (date.getMonth() + 1).toString();
-        let day = (date.getDate()).toString();
-        if(month.length === 1) {
-            month = '0' + month;
-        }
-        if(day.length === 1) {
-            day = '0' + day;
-        }
-        let formatted_date = date.getFullYear() + "-" + month + "-" + day;
-        return formatted_date
+    if (day.length === 1) {
+      day = '0' + day
     }
+    const formattedDate = date.getFullYear() + '-' + month + '-' + day
+    return formattedDate
+  }
 
-    handleAdd() {
-        this.props.addTodo({text: this.state.text, dueDate: this.state.dueDate});
-        this.setState({ text: '' });
-      }
+  handleAdd () {
+    this.props.addTodo({ text: this.state.text, dueDate: this.state.dueDate })
+    this.setState({ text: '' })
+  }
 
-    handleChange(event) {
-        this.setState({ text: event.target.value });
-    }
+  handleChange (event) {
+    this.setState({ text: event.target.value })
+  }
 
-    handleDateChange(event) {
-        this.setState({ dueDate: event.target.value });
-    }
-    
+  handleDateChange (event) {
+    this.setState({ dueDate: event.target.value })
+  }
 
-    render() {
-        return (
+  render () {
+    return (
             <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-md w-full space-y-8">
                     <div>
@@ -82,7 +81,7 @@ export class TodoInput extends React.Component {
                                 Add
                             </button>
                             <button type="button" className="mt-2 group relative w-full flex justify-center rounded-md font-medium bg-green-600 border border-green-500 text-white py-1 px-2 hover:bg-green-800 hover:text-white" onClick={() => {
-                                localStorage.setItem('todos', JSON.stringify(this.props.todos));
+                              localStorage.setItem('todos', JSON.stringify(this.props.todos))
                             }}>
                                 Save To Local Storage
                             </button>
@@ -93,8 +92,13 @@ export class TodoInput extends React.Component {
                     </div>
                 </div>
             </div>
-        );
-    }
+    )
+  }
 }
 
-export default TodoInput;
+TodoInput.propTypes = {
+  addTodo: PropTypes.func.isRequired,
+  todos: PropTypes.array
+}
+
+export default TodoInput
