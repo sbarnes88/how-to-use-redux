@@ -4,8 +4,8 @@
         "es2021": true
     },
     "extends": [
-        "plugin:react/recommended",
-        "standard"
+        "eslint:recommended",
+        "plugin:react/recommended"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -18,5 +18,8 @@
         "react"
     ],
     "rules": {
+        "no-tabs": "off",
+        "indent": ["error", 4],
+        "semi": [2, "always"]
     }
 }

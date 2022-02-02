@@ -1,10 +1,10 @@
-import React from 'react'
-import { PropTypes } from 'prop-types'
-import { Switch } from '@headlessui/react'
+import React from 'react';
+import { PropTypes } from 'prop-types';
+import { Switch } from '@headlessui/react';
 
 export class TodoList extends React.Component {
-  render () {
-    return (
+    render () {
+        return (
 
             <div className="py-2 align-middle inline-block w-full sm:px-6 lg:px-4">
                 <div className="relative inline-block w-full">
@@ -33,7 +33,7 @@ export class TodoList extends React.Component {
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
                             {this.props.todos.sort((a, b) => a.id > b.id).map(todo => {
-                              return (
+                                return (
                                     <tr key={todo.id}>
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="flex items-center">
@@ -75,19 +75,19 @@ export class TodoList extends React.Component {
                                             </button>
                                         </td>
                                     </tr>
-                              )
+                                );
                             })}
                         </tbody>
                     </table>
                 </div>
             </div>
-    )
-  }
+        );
+    }
 }
 
 TodoList.propTypes = {
-  addTodo: PropTypes.func,
-  deleteTodo: PropTypes.func,
-  completeTodo: PropTypes.func,
-  todos: PropTypes.array
-}
+    addTodo: PropTypes.func,
+    deleteTodo: PropTypes.func,
+    completeTodo: PropTypes.func,
+    todos: PropTypes.array
+};
