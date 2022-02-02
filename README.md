@@ -15,7 +15,4 @@ npm install
 npm start
 ```
 
-## TODO
-Add Linting
-
-Add Tests
+<img width="1465" alt="Screen Shot 2022-02-01 at 9 20 03 PM" src="https://user-images.githubusercontent.com/65136741/152092549-af9eb5aa-93f1-483e-89ce-c321a631c7c4.png">
