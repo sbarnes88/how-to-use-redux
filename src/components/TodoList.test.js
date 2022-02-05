@@ -1,21 +1,26 @@
 import { test, expect } from '@jest/globals';
-import TodoList from './TodoInput';
+import {TodoListTest} from './TodoList';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import React from 'react';
 import '@testing-library/jest-dom';
 
 configure({ adapter: new Adapter() });
-test('expect to be defined', () => {
-    expect(TodoList).toBeDefined();
-});
+
+function getShallowComponent(props) {
+    return shallow(
+        <TodoListTest {...props} />
+    );
+}
 
 test('expect delete to be called', () => {
     let index = 0;
     const props = {
-        deleteTodo: () => { index--; }
+        deleteTodo: () => { index--; },
+        addTodo: () => {},
+        getNextId: () => {}
     };
-    const wrapper = shallow(<TodoList {...props} />);
+    const wrapper = getShallowComponent(props);
     const instance = wrapper.instance();
     instance.props.deleteTodo(0);
     expect(index).toBe(-1);
@@ -24,9 +29,12 @@ test('expect delete to be called', () => {
 test('expect complete todo to be called', () => {
     let index = 0;
     const props = {
-        completeTodo: () => { index = 42; }
+        completeTodo: () => { index = 42; },
+        addTodo: () => {},
+        getNextId: () => {}
+
     };
-    const wrapper = shallow(<TodoList {...props} />);
+    const wrapper = getShallowComponent(props);
     const instance = wrapper.instance();
     instance.props.completeTodo(0);
     expect(index).toBe(42);
@@ -35,12 +43,15 @@ test('expect complete todo to be called', () => {
 test('expect props.todos to contain data', () => {
     const props = {
         todos: [{
-            id: 0,
+            id: 1,
             text: 'test',
             completed: false
-        }]
+        }],
+        addTodo: () => {},
+        getNextId: () => {}
+
     };
-    const wrapper = shallow(<TodoList {...props} />);
+    const wrapper = getShallowComponent(props);
     const instance = wrapper.instance();
     expect(instance.props.todos).toBeDefined();
 });

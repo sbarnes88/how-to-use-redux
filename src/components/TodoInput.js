@@ -1,5 +1,6 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
 
 export class TodoInput extends React.Component {
     constructor (props) {
@@ -24,8 +25,13 @@ export class TodoInput extends React.Component {
     }
 
     handleAdd () {
-        this.props.addTodo({ text: this.state.text, dueDate: this.state.dueDate });
-        this.setState({ text: '' });
+        this.props.todoHandler.getNextId().then((id) => {
+            const todo = { text: this.state.text, dueDate: this.state.dueDate, id: id, order: this.props.todos.length };
+            this.props.addTodo(todo);
+            this.props.todoHandler.addTodo(todo);
+            this.setState({ text: '' });
+        });
+        
     }
 
     handleChange (event) {
@@ -96,9 +102,17 @@ export class TodoInput extends React.Component {
     }
 }
 
-TodoInput.propTypes = {
-    addTodo: PropTypes.func.isRequired,
-    todos: PropTypes.array
+const mapStateToProps = (state) => {
+    return state;
 };
 
-export default TodoInput;
+TodoInput.propTypes = {
+    addTodo: PropTypes.func.isRequired,
+    getNextId: PropTypes.func.isRequired,
+    todos: PropTypes.array,
+    todoHandler: PropTypes.object
+};
+
+export { TodoInput as TodoInputTest };
+
+export default connect(mapStateToProps, null)(TodoInput);

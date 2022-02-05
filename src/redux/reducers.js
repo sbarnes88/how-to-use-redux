@@ -9,15 +9,17 @@ const getNextId = (state) => {
 };
 
 const todoReducer = (state = { todos: [] }, action) => {
-    const currentTodos = state.todos === undefined ? [] : state.todos;
+    const currentTodos = state.todos === undefined || state.todos === null ? [] : state.todos;
     switch (action.type) {
+    case 'GET_NEXT_ID':
+        return getNextId(state);
     case 'ADD_TODO':
         return Object.assign({}, state, {
             todos: [{
-                id: getNextId(state),
+                id: action.payload.id,
                 text: action.payload.text,
                 dueDate: action.payload.dueDate,
-                completed: false
+                completed: action.payload.completed || false
             }, ...currentTodos]
         });
     case 'DELETE_TODO':

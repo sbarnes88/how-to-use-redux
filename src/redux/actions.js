@@ -13,3 +13,7 @@ export const updateTodo = (id, text) => {
 export const toggleTodo = (id) => {
     return { type: 'TOGGLE_TODO', id };
 };
+
+export const getNextId = () => {
+    return { type: 'GET_NEXT_ID' };
+};

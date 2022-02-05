@@ -2,7 +2,7 @@ import todoReducer from './reducers';
 import { test, expect } from '@jest/globals';
 
 test('should add todo and increment id', () => {
-    expect(todoReducer({ todos: [] }, { type: 'ADD_TODO', payload: { text: 'Hello' } }))
+    expect(todoReducer({ todos: [] }, { type: 'ADD_TODO', payload: { text: 'Hello', id:1 } }))
         .toStrictEqual({ todos: [{ completed: false, dueDate: undefined, id: 1, text: 'Hello' }] });
 });
 
