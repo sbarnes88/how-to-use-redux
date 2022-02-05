@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import createStoreInstance  from './redux/store';
 
 const localStorageTodos = localStorage.getItem('todos');
-let initialTodos = !localStorageTodos ? [] : JSON.parse(localStorageTodos);
+let initialTodos = !localStorageTodos || localStorageTodos === "undefined" ? [] : JSON.parse(localStorageTodos);
 
 let initialState = {
   todos: initialTodos

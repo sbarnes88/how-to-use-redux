@@ -9,10 +9,6 @@ import { TodoInput } from './components/TodoInput';
 
 export class App extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="grid grid-cols-5 gap-3">
